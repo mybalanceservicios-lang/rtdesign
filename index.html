@@ -132,9 +132,16 @@
   .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
   .card{
     background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
-    padding:30px 26px;transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    padding:30px 26px;position:relative;overflow:hidden;
+    transform-style:preserve-3d;will-change:transform;
+    transition:opacity .5s ease, transform .35s cubic-bezier(.22,.9,.32,1), box-shadow .3s ease, border-color .3s ease;
   }
-  .card:hover{transform:translateY(-5px);box-shadow:0 20px 40px -22px rgba(13,35,65,.25);border-color:transparent;}
+  .card:hover{box-shadow:0 20px 40px -22px rgba(13,35,65,.25);border-color:transparent;}
+  .card .glow{
+    position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity .3s ease;
+    background:radial-gradient(circle at var(--mx,50%) var(--my,0%),rgba(0,112,254,.14),transparent 55%);
+  }
+  .card:hover .glow{opacity:1;}
   .card .ic{
     width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;
     margin-bottom:18px;background:rgba(0,112,254,.1);color:var(--blue);
@@ -226,7 +233,7 @@
   .reveal.in{opacity:1;transform:none;}
 
   /* Service cards lift into place with a little bounce, staggered */
-  .services-grid .card{opacity:0;transform:translateY(46px) scale(.93);transition:opacity .7s ease,transform .8s cubic-bezier(.34,1.56,.64,1);}
+  .services-grid .card{opacity:0;transform:translateY(46px) scale(.93);}
   .services-grid .card.in{opacity:1;transform:none;}
   .services-grid .card:nth-child(1){transition-delay:0ms;}
   .services-grid .card:nth-child(2){transition-delay:90ms;}
@@ -332,31 +339,37 @@
     </div>
     <div class="services-grid">
       <div class="card reveal">
+        <div class="glow"></div>
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></div>
         <h3>Diseño web</h3>
         <p>Sitios institucionales con diseño moderno, responsive y adaptado a la identidad de tu marca.</p>
       </div>
       <div class="card reveal">
+        <div class="glow"></div>
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l1 12H5L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></div>
         <h3>Tiendas online</h3>
         <p>E-commerce a medida para vender tus productos con medios de pago y catálogo fáciles de administrar.</p>
       </div>
       <div class="card reveal">
+        <div class="glow"></div>
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 16V8M8.5 11.5 12 8l3.5 3.5"/></svg></div>
         <h3>Landing pages</h3>
         <p>Páginas de aterrizaje enfocadas en conversión, ideales para campañas y lanzamientos.</p>
       </div>
       <div class="card reveal">
+        <div class="glow"></div>
         <div class="ic"><svg viewBox="0 0 24 24"><circle cx="9" cy="9" r="5" fill="#ef4444" opacity=".85"/><circle cx="15" cy="9" r="5" fill="#f5a623" opacity=".85"/><circle cx="12" cy="15" r="5" fill="#0070fe" opacity=".85"/></svg></div>
         <h3>Identidad visual</h3>
         <p>Logo, paleta de colores y piezas gráficas para que tu marca se vea consistente en todos lados.</p>
       </div>
       <div class="card reveal">
+        <div class="glow"></div>
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></div>
         <h3>Mantenimiento &amp; soporte</h3>
         <p>Actualizaciones, cambios de contenido y acompañamiento continuo una vez publicado tu sitio.</p>
       </div>
       <div class="card reveal">
+        <div class="glow"></div>
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="7" width="10" height="10" rx="1.5"/><rect x="10" y="10" width="4" height="4"/><path d="M7 9H4M7 15H4M20 9h-3M20 15h-3M9 7V4M15 7V4M9 20v-3M15 20v-3"/></svg></div>
         <h3>Softwares &amp; plataformas internas</h3>
         <p>Sistemas a medida para tu negocio: recolección de datos, gestión interna y herramientas propias que simplifican tu operación diaria.</p>
@@ -531,6 +544,20 @@
     entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
   }, { threshold: 0.15 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  /* ---------- Tilt (same technique as BAST) ---------- */
+  function initTilt(el){
+    const max = 7;
+    el.addEventListener('mousemove', e => {
+      const r = el.getBoundingClientRect();
+      const px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
+      el.style.transform = `perspective(800px) rotateX(${(0.5 - py) * max}deg) rotateY(${(px - 0.5) * max}deg) translateY(-4px)`;
+      const g = el.querySelector('.glow');
+      if(g){ g.style.setProperty('--mx', px * 100 + '%'); g.style.setProperty('--my', py * 100 + '%'); }
+    });
+    el.addEventListener('mouseleave', () => { el.style.transform = ''; });
+  }
+  document.querySelectorAll('.services-grid .card').forEach(initTilt);
 
   /* ---------- WebGL flow-field background (inspired by BAST's shader look) ---------- */
   const NOISE = "float hash(vec2 p){return fract(sin(dot(p,vec2(41.3,289.1)))*43758.5453);}"+

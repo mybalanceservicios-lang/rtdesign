@@ -163,19 +163,15 @@
     transition:transform .2s ease;
   }
   .proj-card:hover{transform:translateY(-4px);}
-  .proj-thumb{height:150px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .proj-thumb{height:220px;position:relative;display:flex;align-items:flex-end;justify-content:center;overflow:hidden;}
+  .proj-thumb img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .4s ease;}
+  .proj-card:hover .proj-thumb img{transform:scale(1.04);}
   .proj-thumb .dots{position:absolute;top:14px;left:16px;z-index:2;}
-  .proj-thumb .glyph{position:relative;z-index:1;color:#fff;}
-  .proj-thumb .glyph svg{width:34px;height:34px;}
-  .proj-thumb .sheen{
-    position:absolute;inset:-40%;
-    background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.28) 48%,transparent 66%);
-    animation:sheen 4.5s ease-in-out infinite;
+  .proj-thumb:after{
+    content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(13,35,65,.85));pointer-events:none;
   }
-  @keyframes sheen{0%{transform:translateX(-35%) translateY(-10%);}50%{transform:translateX(10%) translateY(4%);}100%{transform:translateX(-35%) translateY(-10%);}}
-  .proj-card:nth-child(1) .proj-thumb{background:linear-gradient(135deg,#0e7a63,#0d2341);}
-  .proj-card:nth-child(2) .proj-thumb{background:linear-gradient(135deg,#d1477a,#0d2341);}
-  .proj-card:nth-child(3) .proj-thumb{background:linear-gradient(135deg,#0070fe,#0d2341);}
+  .proj-thumb .glyph{position:absolute;bottom:12px;right:14px;z-index:2;color:#fff;background:rgba(13,35,65,.55);border:1px solid rgba(255,255,255,.25);border-radius:10px;padding:6px;backdrop-filter:blur(4px);}
+  .proj-thumb .glyph svg{width:18px;height:18px;display:block;}
   .proj-info{padding:20px 22px 24px;}
   .proj-info .kicker{font-size:.76rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#7fb6ff;margin-bottom:8px;display:block;}
   .proj-info h3{margin:0 0 8px;font-size:1.08rem;font-weight:700;}
@@ -228,6 +224,16 @@
   /* Reveal animation */
   .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease;}
   .reveal.in{opacity:1;transform:none;}
+
+  /* Service cards lift into place with a little bounce, staggered */
+  .services-grid .card{opacity:0;transform:translateY(46px) scale(.93);transition:opacity .7s ease,transform .8s cubic-bezier(.34,1.56,.64,1);}
+  .services-grid .card.in{opacity:1;transform:none;}
+  .services-grid .card:nth-child(1){transition-delay:0ms;}
+  .services-grid .card:nth-child(2){transition-delay:90ms;}
+  .services-grid .card:nth-child(3){transition-delay:180ms;}
+  .services-grid .card:nth-child(4){transition-delay:270ms;}
+  .services-grid .card:nth-child(5){transition-delay:360ms;}
+  .services-grid .card:nth-child(6){transition-delay:450ms;}
 
   @media (max-width:860px){
     .hero-grid{grid-template-columns:1fr;}
@@ -286,7 +292,7 @@
         <a class="btn btn-ghost" href="#proyectos">Ver proyectos</a>
       </div>
       <div class="hero-stats">
-        <div><b>100%</b><span>Diseño a medida</span></div>
+        <div><b id="statPercent" data-target="100" data-suffix="%">0%</b><span>Diseño a medida</span></div>
         <div><b>Rápido</b><span>Entrega y puesta en marcha</span></div>
         <div><b>Full</b><span>Diseño + desarrollo + soporte</span></div>
       </div>
@@ -397,43 +403,43 @@
     <div class="sec-h reveal">
       <span class="tag">Portfolio</span>
       <h2>Proyectos que ya hicimos realidad</h2>
-      <p>Algunos de los negocios que ya confiaron en nosotros para su presencia digital.</p>
+      <p>Sitios web y sistemas de gestión a medida para negocios que ya confiaron en nosotros.</p>
     </div>
     <div class="proj-grid">
       <div class="proj-card reveal">
         <div class="proj-thumb">
+          <img src="assets/proyecto-bast.gif" alt="Vista previa del sitio web de BAST" loading="lazy">
           <span class="dots"><span></span><span></span><span></span></span>
-          <span class="sheen"></span>
           <span class="glyph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 7v10M17.5 7v10M3 10v4M21 10v4M6.5 12h11"/></svg></span>
         </div>
         <div class="proj-info">
-          <span class="kicker">Gimnasio &amp; salud</span>
+          <span class="kicker">Sitio web · Gimnasio &amp; salud</span>
           <h3>BAST</h3>
           <p>Web para un centro de entrenamiento y salud: actividades, horarios de clases, planes de socios y contacto, todo en un solo lugar.</p>
         </div>
       </div>
       <div class="proj-card reveal">
         <div class="proj-thumb">
+          <img src="assets/proyecto-peluqueria.gif" alt="Vista previa del sistema de gestión para barbería" loading="lazy">
           <span class="dots"><span></span><span></span><span></span></span>
-          <span class="sheen"></span>
           <span class="glyph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><path d="M8.1 7.6 20 20M8.1 16.4 20 4"/></svg></span>
         </div>
         <div class="proj-info">
-          <span class="kicker">Peluquería</span>
+          <span class="kicker">Software de gestión · Barbería</span>
           <h3>Peluquerías</h3>
-          <p>Sitio pensado para mostrar servicios, estilo y reservas de turnos, con acceso directo a WhatsApp para agendar en segundos.</p>
+          <p>Sistema interno para barberías: turnos, caja diaria, comisiones por barbero, precios, stock de productos y reportes, con perfiles separados para dueño y empleados.</p>
         </div>
       </div>
       <div class="proj-card reveal">
         <div class="proj-thumb">
+          <img src="assets/proyecto-malby.gif" alt="Vista previa del sistema de gestión financiera Malby" loading="lazy">
           <span class="dots"><span></span><span></span><span></span></span>
-          <span class="sheen"></span>
-          <span class="glyph"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.6 4.8L18 8l-4.4 1.6L12 14l-1.6-4.4L6 8l4.4-1.2L12 2z"/></svg></span>
+          <span class="glyph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="7" width="10" height="10" rx="1.5"/><rect x="10" y="10" width="4" height="4"/><path d="M7 9H4M7 15H4M20 9h-3M20 15h-3M9 7V4M15 7V4M9 20v-3M15 20v-3"/></svg></span>
         </div>
         <div class="proj-info">
-          <span class="kicker">Marca</span>
+          <span class="kicker">Software de gestión · Finanzas</span>
           <h3>Malby</h3>
-          <p>Presencia digital a medida para la marca, con un diseño propio que refleja su identidad y facilita el contacto con sus clientes.</p>
+          <p>Plataforma de gestión financiera con cuentas separadas (personal, empresa, caja fuerte), ventas, compras, deudas y gráficos de resumen en pesos y dólares.</p>
         </div>
       </div>
       <p class="proj-note">¿Tenés un proyecto en mente? Contanos y lo sumamos a esta lista.</p>
@@ -499,6 +505,22 @@
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  (function countUp(){
+    const el = document.getElementById('statPercent');
+    if(!el) return;
+    const target = parseInt(el.dataset.target, 10);
+    const suf = el.dataset.suffix || '';
+    const dur = 1400;
+    const t0 = performance.now() + 300;
+    function step(now){
+      const p = Math.min(1, Math.max(0, (now - t0) / dur));
+      const e = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(target * e) + suf;
+      if(p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  })();
 
   const toggle = document.getElementById('menuToggle');
   const links = document.getElementById('navLinks');

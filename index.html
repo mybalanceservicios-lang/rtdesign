@@ -54,7 +54,7 @@
   }
   .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0;}
   .brand{display:flex;align-items:center;gap:10px;}
-  .brand img{height:36px;width:auto;}
+  .brand img{height:52px;width:auto;}
   .nav-links{display:flex;align-items:center;gap:28px;font-weight:600;font-size:.95rem;}
   .nav-links a{color:var(--navy);opacity:.75;transition:opacity .2s;}
   .nav-links a:hover{opacity:1;}
@@ -181,14 +181,14 @@
   .proj-thumb{height:220px;position:relative;display:flex;align-items:flex-end;justify-content:center;overflow:hidden;}
   .proj-thumb img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .4s ease;}
   .proj-card:hover .proj-thumb img{transform:scale(1.04);}
-  .proj-thumb .dots{position:absolute;top:14px;left:16px;z-index:2;}
   .proj-thumb:after{
     content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(13,35,65,.85));pointer-events:none;
   }
   .proj-thumb .glyph{position:absolute;bottom:12px;right:14px;z-index:2;color:#fff;background:rgba(13,35,65,.55);border:1px solid rgba(255,255,255,.25);border-radius:10px;padding:6px;backdrop-filter:blur(4px);}
   .proj-thumb .glyph svg{width:18px;height:18px;display:block;}
   .proj-info{padding:20px 22px 24px;}
-  .proj-info .kicker{font-size:.76rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#7fb6ff;margin-bottom:8px;display:block;}
+  .proj-info-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px;}
+  .proj-info .kicker{font-size:.76rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#7fb6ff;margin-bottom:0;display:block;}
   .proj-info h3{margin:0 0 8px;font-size:1.08rem;font-weight:700;}
   .proj-info p{margin:0;color:#aebedc;font-size:.92rem;}
   .proj-note{
@@ -226,7 +226,7 @@
   /* Footer */
   footer{background:var(--navy);color:#c9d6ea;padding:44px 0 28px;border-top:1px solid rgba(255,255,255,.08);}
   .foot-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;margin-bottom:26px;}
-  .foot-top img{height:32px;}
+  .foot-top img{height:46px;}
   .foot-social{display:flex;gap:14px;}
   .foot-social a{
     width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;
@@ -430,11 +430,13 @@
       <div class="proj-card reveal">
         <div class="proj-thumb">
           <img src="assets/proyecto-bast.gif" alt="Vista previa del sitio web de BAST" loading="lazy">
-          <span class="dots"><span></span><span></span><span></span></span>
           <span class="glyph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 7v10M17.5 7v10M3 10v4M21 10v4M6.5 12h11"/></svg></span>
         </div>
         <div class="proj-info">
-          <span class="kicker">Sitio web · Gimnasio &amp; salud</span>
+          <div class="proj-info-top">
+            <span class="kicker">Sitio web · Gimnasio &amp; salud</span>
+            <span class="dots"><span></span><span></span><span></span></span>
+          </div>
           <h3>BAST</h3>
           <p>Web para un centro de entrenamiento y salud: actividades, horarios de clases, planes de socios y contacto, todo en un solo lugar.</p>
         </div>
@@ -442,11 +444,13 @@
       <div class="proj-card reveal">
         <div class="proj-thumb">
           <img src="assets/proyecto-peluqueria.gif" alt="Vista previa del sistema de gestión para barbería" loading="lazy">
-          <span class="dots"><span></span><span></span><span></span></span>
           <span class="glyph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><path d="M8.1 7.6 20 20M8.1 16.4 20 4"/></svg></span>
         </div>
         <div class="proj-info">
-          <span class="kicker">Software de gestión · Barbería</span>
+          <div class="proj-info-top">
+            <span class="kicker">Software de gestión · Barbería</span>
+            <span class="dots"><span></span><span></span><span></span></span>
+          </div>
           <h3>Peluquerías</h3>
           <p>Sistema interno para barberías: turnos, caja diaria, comisiones por barbero, precios, stock de productos y reportes, con perfiles separados para dueño y empleados.</p>
         </div>
@@ -454,11 +458,13 @@
       <div class="proj-card reveal">
         <div class="proj-thumb">
           <img src="assets/proyecto-malby.gif" alt="Vista previa del sistema de gestión financiera Malby" loading="lazy">
-          <span class="dots"><span></span><span></span><span></span></span>
           <span class="glyph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="7" width="10" height="10" rx="1.5"/><rect x="10" y="10" width="4" height="4"/><path d="M7 9H4M7 15H4M20 9h-3M20 15h-3M9 7V4M15 7V4M9 20v-3M15 20v-3"/></svg></span>
         </div>
         <div class="proj-info">
-          <span class="kicker">Software de gestión · Finanzas</span>
+          <div class="proj-info-top">
+            <span class="kicker">Software de gestión · Finanzas</span>
+            <span class="dots"><span></span><span></span><span></span></span>
+          </div>
           <h3>Malby</h3>
           <p>Plataforma de gestión financiera con cuentas separadas (personal, empresa, caja fuerte), ventas, compras, deudas y gráficos de resumen en pesos y dólares.</p>
         </div>
@@ -466,11 +472,13 @@
       <div class="proj-card reveal">
         <div class="proj-thumb">
           <img src="assets/proyecto-academico.gif" alt="Vista previa del Panel Académico" loading="lazy">
-          <span class="dots"><span></span><span></span><span></span></span>
           <span class="glyph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 8l10 5 10-5-10-5z"/><path d="M6 10.5V16c0 1 2.7 2.5 6 2.5s6-1.5 6-2.5v-5.5"/></svg></span>
         </div>
         <div class="proj-info">
-          <span class="kicker">Software de gestión · Educación</span>
+          <div class="proj-info-top">
+            <span class="kicker">Software de gestión · Educación</span>
+            <span class="dots"><span></span><span></span><span></span></span>
+          </div>
           <h3>Panel Académico</h3>
           <p>Organizador para estudiantes: materias, cronogramas, archivos y links por materia, y un calendario de parciales y finales. Todo guardado en el navegador, sin depender de un servidor.</p>
         </div>

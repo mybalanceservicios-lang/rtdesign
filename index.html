@@ -152,10 +152,18 @@
   /* Proceso */
   .proceso-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;counter-reset:step;}
   .step{position:relative;padding-top:8px;}
+  .proceso-steps .step{opacity:0;transform:translateY(30px) scale(.95);transition:opacity .5s ease,transform .5s cubic-bezier(.22,.9,.32,1);}
+  .proceso-steps .step.in{opacity:1;transform:none;}
   .step .num{
     display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;
     border-radius:11px;background:var(--navy);color:#fff;font-weight:800;margin-bottom:16px;
+    transform:scale(0);transition:transform .35s cubic-bezier(.34,1.8,.64,1);
   }
+  .proceso-steps .step.in .num{transform:scale(1);}
+  .proceso-steps .step:nth-child(1),.proceso-steps .step:nth-child(1) .num{transition-delay:0ms;}
+  .proceso-steps .step:nth-child(2),.proceso-steps .step:nth-child(2) .num{transition-delay:220ms;}
+  .proceso-steps .step:nth-child(3),.proceso-steps .step:nth-child(3) .num{transition-delay:440ms;}
+  .proceso-steps .step:nth-child(4),.proceso-steps .step:nth-child(4) .num{transition-delay:660ms;}
   .step h4{margin:0 0 8px;font-size:1.02rem;font-weight:700;}
   .step p{margin:0;color:var(--muted);font-size:.9rem;}
 
@@ -164,7 +172,7 @@
   .proyectos canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.55;}
   .proyectos .tag{color:#7fb6ff;}
   .proyectos .sec-h p{color:#aebedc;}
-  .proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;position:relative;z-index:1;}
+  .proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;position:relative;z-index:1;}
   .proj-card{
     background:rgba(18,43,82,.75);backdrop-filter:blur(6px);border-radius:var(--radius);overflow:hidden;border:1px solid rgba(255,255,255,.1);
     transition:transform .2s ease;
@@ -453,6 +461,18 @@
           <span class="kicker">Software de gestión · Finanzas</span>
           <h3>Malby</h3>
           <p>Plataforma de gestión financiera con cuentas separadas (personal, empresa, caja fuerte), ventas, compras, deudas y gráficos de resumen en pesos y dólares.</p>
+        </div>
+      </div>
+      <div class="proj-card reveal">
+        <div class="proj-thumb">
+          <img src="assets/proyecto-academico.gif" alt="Vista previa del Panel Académico" loading="lazy">
+          <span class="dots"><span></span><span></span><span></span></span>
+          <span class="glyph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 8l10 5 10-5-10-5z"/><path d="M6 10.5V16c0 1 2.7 2.5 6 2.5s6-1.5 6-2.5v-5.5"/></svg></span>
+        </div>
+        <div class="proj-info">
+          <span class="kicker">Software de gestión · Educación</span>
+          <h3>Panel Académico</h3>
+          <p>Organizador para estudiantes: materias, cronogramas, archivos y links por materia, y un calendario de parciales y finales. Todo guardado en el navegador, sin depender de un servidor.</p>
         </div>
       </div>
       <p class="proj-note">¿Tenés un proyecto en mente? Contanos y lo sumamos a esta lista.</p>

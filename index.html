@@ -211,16 +211,18 @@
   .contact-card h2{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;margin:0 0 14px;position:relative;}
   .contact-card p{color:#c9d6ea;max-width:44ch;margin:0 0 26px;position:relative;}
   .contact-ctas{display:flex;flex-wrap:wrap;gap:12px;position:relative;}
-  .contact-links{display:flex;flex-direction:column;gap:16px;position:relative;}
+  .contact-links{display:flex;flex-direction:column;gap:16px;position:relative;min-width:0;}
   .contact-links a{
     display:flex;align-items:center;gap:14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);
     padding:16px 18px;border-radius:14px;font-weight:600;transition:background .2s ease,border-color .2s ease;
+    min-width:0;
   }
   .contact-links a:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.3);}
   .contact-links .ic{
     width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;
     background:rgba(255,255,255,.12);flex-shrink:0;color:#fff;
   }
+  .contact-links a>span:last-child{min-width:0;overflow-wrap:anywhere;}
   .contact-links small{display:block;color:#aebedc;font-weight:500;font-size:.78rem;}
 
   /* Footer */
